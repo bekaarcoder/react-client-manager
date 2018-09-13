@@ -1,5 +1,5 @@
 import React from 'react';
-import {Scene, Router} from 'react-native-router-flux';
+import {Scene, Router, ActionConst} from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 
@@ -17,6 +17,9 @@ const RouterComponent = () => {
           key="employeeList"
           component={EmployeeList}
           title="Employee List"
+          type={ActionConst.RESET}
+          rightTitle="Add"
+          onRight={() => console.log('clicked')}
         />
       </Scene>
     </Router>
