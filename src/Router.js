@@ -13,6 +13,7 @@ const RouterComponent = () => {
           key="login"
           component={LoginForm}
           title="Login"
+          initial
         />
         <Scene
           key="employeeList"
@@ -21,7 +22,6 @@ const RouterComponent = () => {
           type={ActionConst.RESET}
           rightTitle="Add"
           onRight={() => Actions.employeeForm()}
-          initial
         />
         <Scene
           key="employeeForm"
