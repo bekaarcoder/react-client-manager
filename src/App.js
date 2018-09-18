@@ -27,6 +27,7 @@ class App extends Component {
       {},
       applyMiddleware(ReduxThunk)
     );
+    console.disableYellowBox = true;
     return (
       <Provider store={store}>
         <Router />

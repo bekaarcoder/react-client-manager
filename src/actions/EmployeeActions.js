@@ -1,4 +1,4 @@
-import {EMPLOYEE_UPDATE, EMPLOYEE_CREATE} from './types';
+import {EMPLOYEE_UPDATE, EMPLOYEE_CREATE, EMPLOYEE_FETCH_SUCCESS} from './types';
 import {Actions} from 'react-native-router-flux';
 
 export const employeeUpdate = ({prop, value}) => {
@@ -25,7 +25,7 @@ export const employeeCreate = ({name, phone, shift}) => {
 
 export const employeeFetch = () => {
   const firebase = require('firebase');
-  const currentUser = firebase.auth();
+  const {currentUser} = firebase.auth();
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
       .on('value', snapshot => {
@@ -34,5 +34,15 @@ export const employeeFetch = () => {
           payload: snapshot.val()
         });
       });
+  };
+}
+
+export const employeeSave = ({name, phone, shift, uid}) => {
+  const firebase = require('firebase');
+  const {currentUser} = firebase.auth();
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .set({name, phone, shift})
+      .then(() => console.log("Saved Record"));
   };
 }
